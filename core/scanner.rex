@@ -15,6 +15,7 @@ macro
 	CLOSE_PAREN		\)
 	COMMA			,
 	EQUAL			=
+	OPERATOR		\|\||&&|==|!=|<=|>=
 
 rule
 	{BLANK}			# not significant.
@@ -29,5 +30,6 @@ rule
 	{CLOSE_PAREN}		{ [:CLOSE_PAREN] }
 	{COMMA}			{ [:COMMA] }
 	{EQUAL}			{ [:EQUAL] }
+	{OPERATOR}		{ [text, text] }
 
 end
