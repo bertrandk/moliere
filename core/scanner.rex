@@ -16,15 +16,15 @@ macro
 	EQUAL			=
 
 rule
-	{BLANK}
+	{BLANK}			# not significant.
 
 	{NUMBER}		{ [:NUMBER, text.to_i] }
 	{STRING}		{ [:STRING, text.to_s] }
 
-	{KEYWORD}		{ [:IDENTIFIER, text] }
-	{IDENTIFIER}	{ [:IDENTIFIER, text] }
-	{OPEN_PAREN}	{ [:OPEN_PAREN] }
-	{CLOSE_PAREN}	{ [:CLOSE_PAREN] }
+	{KEYWORD}		{ [text.upcase.to_sym, text] }
+	{IDENTIFIER}		{ [:IDENTIFIER, text] }
+	{OPEN_PAREN}		{ [:OPEN_PAREN] }
+	{CLOSE_PAREN}		{ [:CLOSE_PAREN] }
 	{COMMA}			{ [:COMMA] }
 	{EQUAL}			{ [:EQUAL] }
 
