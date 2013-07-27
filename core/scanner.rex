@@ -16,6 +16,7 @@ macro
 	COMMA			,
 	EQUAL			=
 	OPERATOR		\|\||&&|==|!=|<=|>=
+	TOKEN			.
 
 rule
 	{BLANK}			# not significant.
@@ -31,5 +32,6 @@ rule
 	{COMMA}			{ [:COMMA] }
 	{EQUAL}			{ [:EQUAL] }
 	{OPERATOR}		{ [text, text] }
+	{TOKEN}			{ [text, text] }
 
 end
