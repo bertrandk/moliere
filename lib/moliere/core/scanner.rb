@@ -67,9 +67,12 @@ class Scanner < Racc::Parser
          action { [:STRING, text.to_s] }
 
       when (text = @ss.scan(/classe|déf|fin|si|ousi|vrai|faux|nul|pendant|continue|quand|arrêté|retourne|soi|pas|super|pour|dans|puis|et|suivant|prochain/))
-         action { [:IDENTIFIER, text] }
+         action { [text.upcase.to_sym, text] }
 
-      when (text = @ss.scan(/[a-zA-Z_@][a-zA-Z0-9_']*/))
+      when (text = @ss.scan(/[A-Z][a-zA-Z0-9_']*/))
+         action { [:CONSTANT, text] }
+
+      when (text = @ss.scan(/[a-z_@][a-zA-Z0-9_']*/))
          action { [:IDENTIFIER, text] }
 
       when (text = @ss.scan(/\(/))
@@ -84,6 +87,12 @@ class Scanner < Racc::Parser
       when (text = @ss.scan(/=/))
          action { [:EQUAL] }
 
+      when (text = @ss.scan(/\|\||&&|==|!=|<=|>=/))
+         action { [text, text] }
+
+      when (text = @ss.scan(/./))
+         action { [text, text] }
+
       else
         text = @ss.string[@ss.pos .. -1]
         raise  ScanError, "can not match: '" + text + "'"
@@ -96,17 +105,3 @@ class Scanner < Racc::Parser
   end  # def _next_token
 
 end # class
-
-if __FILE__ == $0
-  exit  if ARGV.size != 1
-  filename = ARGV.shift
-  rex = Scanner.new
-  begin
-    rex.load_file  filename
-    while  token = rex.next_token
-      p token
-    end
-  rescue
-    $stderr.printf  "%s:%d:%s\n", rex.filename, rex.lineno, $!.message
-  end
-end
