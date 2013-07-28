@@ -81,7 +81,7 @@ describe Scanner do
 		subject.should include([">=", ">="])
 	end
 
-	it "should detect token" do
+	it "should detect tokens" do
 		subject.should include(["+", "+"])
 	end
 
