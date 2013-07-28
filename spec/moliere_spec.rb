@@ -2,6 +2,7 @@ require 'spec_helper'
 require 'moliere'
 
 describe Moliere do
-  it "should do something" do
-  end
+	it "should have a VERSION constant" do
+		subject.const_get('VERSION').should_not be_empty
+	end
 end
