@@ -21,13 +21,16 @@ describe Scanner do
 				fin
 
 				déf vieux?
-					retourne vrai si @age >= 65
+					retourne @age >= 65
 				fin
 
 				déf prochaine_age
 					retourne @age++
 				fin
 
+				déf innomé?
+					retourne @nom == "John Doe"
+				fin
 			fin
 
 
@@ -63,6 +66,10 @@ describe Scanner do
 
 	it "should detect identifiers" do
 		subject.should include([:IDENTIFIER, "initialise"])
+	end
+
+	it "should detect accented identifiers" do
+		subject.should include([:IDENTIFIER, "innomé?"])
 	end
 
 	it "should detect open parenthesis" do
