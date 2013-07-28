@@ -1,1 +1,1 @@
-require 'moliere/core/scanner.rex.rb'
+require 'moliere/core/scanner'
