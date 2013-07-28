@@ -69,10 +69,10 @@ class Scanner < Racc::Parser
       when (text = @ss.scan(/classe|déf|fin|si|ousi|vrai|faux|nul|pendant|continue|quand|arrêté|retourne|soi|pas|super|pour|dans|puis|et|suivant|prochain/))
          action { [text.upcase.to_sym, text] }
 
-      when (text = @ss.scan(/[A-Z][a-zA-Z0-9_']*/))
+      when (text = @ss.scan(/[A-Z][a-zA-Z0-9_'?]*/))
          action { [:CONSTANT, text] }
 
-      when (text = @ss.scan(/[a-z_@][a-zA-Z0-9_']*/))
+      when (text = @ss.scan(/[a-z_@][a-zA-Z0-9_'?]*/))
          action { [:IDENTIFIER, text] }
 
       when (text = @ss.scan(/\(/))

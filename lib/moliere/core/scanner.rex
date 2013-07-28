@@ -9,8 +9,8 @@ macro
 
 	KEYWORD			classe|déf|fin|si|ousi|vrai|faux|nul|pendant|continue|quand|arrêté|retourne|soi|pas|super|pour|dans|puis|et|suivant|prochain
 
-	CONSTANT		[A-Z][a-zA-Z0-9_']*
-	IDENTIFIER		[a-z_@][a-zA-Z0-9_']*
+	CONSTANT		[A-Z][a-zA-Z0-9_'?]*
+	IDENTIFIER		[a-z_@][a-zA-Z0-9_'?]*
 	OPEN_PAREN		\(
 	CLOSE_PAREN		\)
 	COMMA			,
